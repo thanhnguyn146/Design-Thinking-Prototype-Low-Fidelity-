@@ -177,9 +177,19 @@ p{color:var(--muted);line-height:1.6}
         <!-- CÁC TRANG CATEGORY MỚI -->
         <section id="academic" class="screen">
           <div class="breadcrumb">Home / Academic & Schedule</div>
-          <h1>Academic & Schedule</h1><p>Manage your classes, exams, and academic timeline.</p>
+          <h1>Academic & Schedule</h1>
+          <p>Manage your classes, exams, and academic timeline separately.</p>
           <div class="grid">
-            <div class="card clickable" onclick="openDetail('exam', 'academic')"><div class="icon">🗓️</div><h3>Class & exam schedule</h3><p>Find your current schedule.</p></div>
+            <div class="card clickable" onclick="openDetail('classSchedule', 'academic')">
+              <div class="icon">📅</div>
+              <h3>Class schedule</h3>
+              <p>View your weekly class timetable and rooms.</p>
+            </div>
+            <div class="card clickable" onclick="openDetail('examSchedule', 'academic')">
+              <div class="icon">🗓️</div>
+              <h3>Exam schedule</h3>
+              <p>Check dates, shifts, and rooms for mid-terms and finals.</p>
+            </div>
           </div>
         </section>
 
@@ -187,13 +197,12 @@ p{color:var(--muted);line-height:1.6}
           <div class="breadcrumb">Home / Learning & Materials</div>
           <h1>Learning & Materials</h1><p>Access resources provided by your lecturers.</p>
           <div class="grid">
-            <div class="card clickable" onclick="openDetail('materials', 'learning')"><div class="icon">📄</div><h3>Course materials</h3><p>Go to the relevant LMS course and resource.</p></div>
-            <div class="card clickable" onclick="openDetail('quiz', 'learning')"><div class="icon">📝</div><h3>Online quiz / test</h3><p>Find online assessment resources.</p></div>
-            <div class="card clickable" onclick="openDetail('turnitin', 'learning')"><div class="icon">🔎</div><h3>Plagiarism check</h3><p>Information about Turnitin and submission flow.</p></div>
+            <div class="card clickable" onclick="openDetail('materials', 'learning')"><div class="icon">📄</div><h3>Course materials</h3><p>Download lecture slides and files.</p></div>
+            <div class="card clickable" onclick="openDetail('quiz', 'learning')"><div class="icon">📝</div><h3>Online quiz / test</h3><p>Access online assessments.</p></div>
+            <div class="card clickable" onclick="openDetail('turnitin', 'learning')"><div class="icon">🔎</div><h3>Plagiarism check</h3><p>Submit files to Turnitin.</p></div>
           </div>
         </section>
-
-        <section id="drs" class="screen">
+		<section id="drs" class="screen">
           <div class="breadcrumb">Home / Activities & Points</div>
           <h1>Activities & Points</h1><p>The central hub for tracking your extracurricular progress.</p>
           <div class="grid">
@@ -256,30 +265,52 @@ p{color:var(--muted);line-height:1.6}
 
 <script>
 const DATA = {
-  exam: { 
-    title: "Class & exam schedule", platform: "UEH Student", icon: "🗓️", 
-    desc: "Find your current class and exam schedule.", 
-    reason: "UEH Student is the official academic portal where the university publishes your personalized timetable and exact exam rooms.",
-    steps: ["Open the UEH Student destination.", "Choose the schedule function.", "Select the relevant semester or period.", "View the schedule."], 
+  classSchedule: { 
+    title: "Class schedule", platform: "UEH Student Portal", icon: "📅", 
+    desc: "View your weekly class timetable, room locations, and lecturer details.", 
+    reason: "UEH Student updates weekly classroom assignments and changes directly from the academic department.",
+    steps: ["Open the UEH Student portal.", "Go to the timetable section.", "Select the current week."], 
     actions: ["Open destination", "Add to calendar"],
     previewHtml: `
       <div class="mock-data">
         <div class="mock-header">
-          <strong>📅 Thời khóa biểu Tuần này</strong>
-          <span style="font-size:12px; color:var(--muted)">Sinh viên: Nguyễn Văn A (K52)</span>
+          <strong>📅 Thời khóa biểu Tuần này (Lịch học)</strong>
+          <span style="font-size:12px; color:var(--muted)">Sinh viên: Nguyễn Đức Thành</span>
         </div>
         <div class="mock-item">
           <div class="mock-time">Thứ 3<br>29/09</div>
           <div class="mock-info">
-            <strong>Kinh tế vi mô</strong>
+            <strong>Kinh tế vi mô (Nhóm 01)</strong>
             <span>Ca 1 (07:30 - 09:45) | Phòng B1-204 (Cơ sở B)</span>
           </div>
         </div>
         <div class="mock-item">
           <div class="mock-time">Thứ 5<br>01/10</div>
           <div class="mock-info">
-            <strong>Triết học Mác - Lênin</strong>
+            <strong>Triết học Mác - Lênin (Nhóm 04)</strong>
             <span>Ca 3 (12:30 - 15:00) | Phòng N1-301 (Cơ sở Nam TP)</span>
+          </div>
+        </div>
+      </div>
+    `
+  },
+  examSchedule: { 
+    title: "Exam schedule", platform: "UEH Student Portal", icon: "🗓️", 
+    desc: "Check your mid-term and final examination dates, shifts, and seat numbers.", 
+    reason: "Official exam rooms and seating charts are published exclusively through the examination management module on UEH Student.",
+    steps: ["Open the UEH Student portal.", "Navigate to 'Exam Schedule'.", "Check your seat number and room code."], 
+    actions: ["Open destination", "Add to calendar"],
+    previewHtml: `
+      <div class="mock-data">
+        <div class="mock-header">
+          <strong>📝 Lịch thi Kỳ này</strong>
+          <span style="font-size:12px; color:var(--accent); font-weight:bold;">Sắp diễn ra</span>
+        </div>
+        <div class="mock-item">
+          <div class="mock-time">15/10<br>Thứ 4</div>
+          <div class="mock-info">
+            <strong>Thi Giữa kỳ: Kinh tế vi mô</strong>
+            <span>Ca 2 (09:30) | Phòng A.201 | SBD: 45</span>
           </div>
         </div>
       </div>
@@ -496,7 +527,8 @@ const DATA = {
 };
 
 const INDEX = [
-  ["exam", "exam schedule lịch thi lịch học", "Class & exam schedule", "UEH Student"],
+  ["classSchedule", "class schedule lịch học thời khóa biểu", "Class schedule", "UEH Student Portal"],
+  ["examSchedule", "exam schedule lịch thi", "Exam schedule", "UEH Student Portal"],
   ["materials", "course material tài liệu", "Course materials", "UEH LMS"],
   ["points", "training points điểm rèn luyện", "Check training points", "UEH DRS"],
   ["activities", "activities hoạt động", "Find activities", "UEH DRS"],
@@ -634,26 +666,23 @@ function openDetail(key, fromScreen = 'find') {
 function action(btn, a, key) {
   if (a.toLowerCase().includes("save")) {
     if (!saved.includes(key)) {
-      saved.push(key);
-      safeSaveToStorage();
-      renderSaved();
+      saved.push(key); safeSaveToStorage(); renderSaved();
       toast("Route saved for later.");
-      btn.innerText = "✓ Saved";
-      btn.classList.remove("secondary");
-      btn.classList.add("success");
-    } else {
-      toast("Route already saved.");
-    }
+      btn.innerText = "✓ Saved"; btn.classList.remove("secondary"); btn.classList.add("success");
+    } else toast("Route already saved.");
   }
   else if (a.toLowerCase().includes("calendar")) {
-    toast("Added deadline to calendar.");
-    btn.innerText = "✓ Added";
-    btn.classList.remove("secondary");
-    btn.classList.add("success");
+    // Mở Google Calendar thật sự
+    toast("Đang mở Google Calendar...");
+    btn.innerText = "✓ Added"; btn.classList.remove("secondary"); btn.classList.add("success");
+    
+    let eventTitle = encodeURIComponent("Nhắc nhở UEH: " + DATA[key].title);
+    let eventDesc = encodeURIComponent("Nhiệm vụ: " + DATA[key].desc + "\n\nNền tảng: " + DATA[key].platform);
+    let gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&details=${eventDesc}`;
+    setTimeout(() => window.open(gcalUrl, '_blank'), 600);
   }
-  else {
-    toast("Simulated: Opening " + DATA[key].platform);
-  }
+  else toast("Simulated: Opening " + DATA[key].platform);
+
 }
 
 function renderSaved() {
